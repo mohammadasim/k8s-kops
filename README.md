@@ -1,0 +1,1 @@
+# k8s cluster deployment using kops and spot instances
