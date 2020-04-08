@@ -201,7 +201,7 @@ spec:
       serviceAccountName: cluster-autoscaler
       containers:
         - name: cluster-autoscaler
-          image: k8s.gcr.io/cluster-autoscaler:v1.16.0
+          image: k8s.gcr.io/cluster-autoscaler:v1.15.0
           livenessProbe:
             httpGet:
               path: /health-check
@@ -219,12 +219,12 @@ spec:
               memory: 300Mi
           command:
             - ./cluster-autoscaler
-            - --v=9
+            - --v=6
+            - --scale-down-unneeded-time=30s
             - --stderrthreshold=info
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
-            - --nodes=1:2:nodes-eu-west-1b.kops.devteams.co.uk
-            - --nodes=1:3:nodes-eu-west-1c.kops.devteams.co.uk
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled
             - --skip-nodes-with-system-pods=false
             - --expander=least-waste
             - --scale-down-delay-after-add=2m

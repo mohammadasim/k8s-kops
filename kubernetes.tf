@@ -269,6 +269,12 @@ resource "aws_autoscaling_group" "nodes-eu-west-1b-kops-devteams-co-uk" {
     propagate_at_launch = true
   }
 
+  tag {
+    key                 = "k8s.io/cluster-autoscaler/enabled"
+    value               = "true"
+    propagate_at_launch = true
+  }
+  
   metrics_granularity = "1Minute"
   enabled_metrics     = ["GroupDesiredCapacity", "GroupInServiceInstances", "GroupMaxSize", "GroupMinSize", "GroupPendingInstances", "GroupStandbyInstances", "GroupTerminatingInstances", "GroupTotalInstances"]
 }
@@ -310,6 +316,12 @@ resource "aws_autoscaling_group" "nodes-eu-west-1c-kops-devteams-co-uk" {
     propagate_at_launch = true
   }
 
+  tag {
+    key                 = "k8s.io/cluster-autoscaler/enabled"
+    value               = "true"
+    propagate_at_launch = true
+  }
+  
   metrics_granularity = "1Minute"
   enabled_metrics     = ["GroupDesiredCapacity", "GroupInServiceInstances", "GroupMaxSize", "GroupMinSize", "GroupPendingInstances", "GroupStandbyInstances", "GroupTerminatingInstances", "GroupTotalInstances"]
 }
@@ -603,7 +615,7 @@ resource "aws_launch_configuration" "master-eu-west-1a-masters-kops-devteams-co-
 resource "aws_launch_configuration" "nodes-eu-west-1b-kops-devteams-co-uk" {
   name_prefix                 = "nodes-eu-west-1b.kops.devteams.co.uk-"
   image_id                    = "ami-0436d5c4f7366217f"
-  instance_type               = "t2.small"
+  instance_type               = "t3a.small"
   key_name                    = aws_key_pair.kubernetes-kops-devteams-co-uk-c08b303b06de167752988c5602f4f403.id
   iam_instance_profile        = aws_iam_instance_profile.nodes-kops-devteams-co-uk.id
   security_groups             = [aws_security_group.nodes-kops-devteams-co-uk.id]
@@ -629,7 +641,7 @@ resource "aws_launch_configuration" "nodes-eu-west-1b-kops-devteams-co-uk" {
 resource "aws_launch_configuration" "nodes-eu-west-1c-kops-devteams-co-uk" {
   name_prefix                 = "nodes-eu-west-1c.kops.devteams.co.uk-"
   image_id                    = "ami-0436d5c4f7366217f"
-  instance_type               = "t2.small"
+  instance_type               = "t3a.small"
   key_name                    = aws_key_pair.kubernetes-kops-devteams-co-uk-c08b303b06de167752988c5602f4f403.id
   iam_instance_profile        = aws_iam_instance_profile.nodes-kops-devteams-co-uk.id
   security_groups             = [aws_security_group.nodes-kops-devteams-co-uk.id]

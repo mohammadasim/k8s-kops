@@ -16,13 +16,13 @@ scheduler:
   # serviceType: "NodePort"
   serviceType: "LoadBalancer"
   servicePort: 8786
-  resources: {}
-  #  limits:
-  #    cpu: 1.8
-  #    memory: 6G
-  #  requests:
-  #    cpu: 1.8
-  #    memory: 6G
+  resources: 
+   limits:
+     cpu: 1
+     memory: 1G
+   requests:
+     cpu: 1
+     memory: 500Mi
   tolerations: []
   nodeSelector: {
     failure-domain.beta.kubernetes.io/zone: eu-west-1a
@@ -62,14 +62,14 @@ worker:
 #      value: numba xarray -c conda-forge
 #    - name: EXTRA_PIP_PACKAGES
 #      value: s3fs dask-ml --upgrade
-  resources: {}
-  #  limits:
-  #    cpu: 1
-  #    memory: 1G
+  resources: 
+   limits:
+     cpu: 1
+     memory: 500Mi
   #   #  nvidia.com/gpu: 1
-  #  requests:
-  #    cpu: 250m
-  #    memory: 1G
+   requests:
+     cpu: 1
+     memory: 250Mi
   #    nvidia.com/gpu: 1
   tolerations: []
   nodeSelector: {}
@@ -105,13 +105,13 @@ jupyter:
     # Extra Jupyter config goes here
     # E.g
     # c.NotebookApp.port = 8888
-  resources: {}
-  #  limits:
-  #    cpu: 2
-  #    memory: 6G
-  #  requests:
-  #    cpu: 2
-  #    memory: 6G
+  resources: 
+   limits:
+     cpu: 200m
+     memory: 512Mi
+   requests:
+     cpu: 100m
+     memory: 256Mi
   tolerations: []
   nodeSelector: {}
   affinity: {}
